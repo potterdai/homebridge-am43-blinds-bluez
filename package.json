@@ -1,0 +1,60 @@
+{
+  "name": "homebridge-am43-blinds-pi",
+  "version": "0.4.0",
+  "description": "A homebridge plugin to control AM43 based shade motors in HomeKit. These include the A OK and Zemismart bluetooth based motors. This plugin requires a Homebridge host that supports Bluetooth 4.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf ./dist && rm -rf ./homebridge-ui",
+    "build": "npm run clean && tsc --build && npm run link-to-dist && esbuild homebridge-ui/src/index.js --bundle --outfile=homebridge-ui/public/out.js --define:process.env.NODE_ENV='\"development\"' && cp ui/public/index.html homebridge-ui/public/index.html",
+    "link-to-dist": "replace '../lib/' '../dist/' homebridge-ui/server.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "slide",
+    "homebridge-plugin",
+    "homekit",
+    "blind",
+    "shade",
+    "motor",
+    "am43",
+    "zemismart",
+    "a-ok"
+  ],
+  "engines": {
+    "homebridge": ">=1.3.9",
+    "node": ">14.0"
+  },
+  "files": [
+    "dist",
+    "homebridge-ui",
+    "config.schema.json"
+  ],
+  "author": "neil-morrison44",
+  "license": "MIT",
+  "dependencies": {
+    "@homebridge/plugin-ui-utils": "0.0.18",
+    "debug": "^4.2.0",
+    "node-ble": "github:neil-morrison44/node-ble"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "esbuild": "^0.9.2",
+    "homebridge": "^1.4.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "replace": "^1.2.1",
+    "typescript": "^4.5.5"
+  },
+  "prettier": {
+    "semi": false
+  },
+  "eslintConfig": {
+    "rules": {
+      "prefer-const": 1
+    }
+  }
+}

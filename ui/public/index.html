@@ -1,0 +1,9 @@
+<div class="am43-app-container"></div>
+
+<!-- <script src="out.js?nocache=13"></script> -->
+
+<script>
+  var scriptElement = document.createElement("script")
+  scriptElement.src = "out.js?nocache=" + (Math.random() * 10000).toFixed(0)
+  document.getElementsByTagName('head')[0].appendChild(scriptElement)
+</script>

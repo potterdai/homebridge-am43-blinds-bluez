@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["ESNext"],
+    "module": "CommonJS",
+    "declaration": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "outDir": "../dist",
+    "strict": true,
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "composite": true
+  },
+  "include": ["."],
+  "exclude": ["../node_modules"]
+}

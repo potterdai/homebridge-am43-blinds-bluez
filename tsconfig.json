@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": [
+      "ESNext"
+    ],
+    "module": "CommonJS",
+    "declaration": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "strict": true,
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "lib"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "ui"
+  ],
+  "references": [
+    {
+      "path": "./ui"
+    },
+    {
+      "path": "./ui/src"
+    },
+    {
+      "path": "./lib"
+    }
+  ]
+}

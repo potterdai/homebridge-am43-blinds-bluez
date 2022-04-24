@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "es6",
+    "jsx": "react",
+    "outDir": "../../homebridge-ui/src",
+    "lib": ["DOM"],
+    "composite": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+  },
+  "include": [
+    "./*", "./**/*", "../../package.json", "../global.d.ts"
+  ],
+  "exclude": [],
+  "references": [
+    { "path": "../../lib" },
+    { "path": "../" },
+  ]
+}

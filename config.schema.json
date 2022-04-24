@@ -1,0 +1,98 @@
+{
+  "pluginAlias": "am43-blinds-pi",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "A plugin for Bluetooth-based AM43 blind motors",
+  "footerDisplay": "See the [github repo](https://github.com/neil-morrison44/homebridge-am43-blinds-pi) for known issues and troubleshooting",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "allowed_devices": {
+        "title": "Allowed Devices",
+        "description": "A list of allowed devices. Use the 'Blind Engine' UI to find new blinds.",
+        "type": "array",
+        "required": true,
+        "uniqueItems": true,
+        "default": [],
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string",
+              "required": false
+            },
+            "address": {
+              "title": "Identifier",
+              "type": "string",
+              "required": true
+            },
+            "pass_code": {
+              "title": "Pass Code",
+              "required": false,
+              "type": "string"
+            },
+            "has_tilt": {
+              "title": "Combine 2 motors, with one as a tilt",
+              "type": "boolean",
+              "default": false
+            },
+            "tilt_motor": {
+              "title": "Tilt Motor",
+              "required": false,
+              "type": "object",
+              "condition": {
+                "functionBody": "return model.allowed_devices[arrayIndices].has_tilt === true;"
+              },
+              "properties": {
+                "address": {
+                  "title": "Identifier",
+                  "type": "string",
+                  "required": true
+                },
+                "pass_code": {
+                  "title": "Pass Code",
+                  "required": false,
+                  "type": "string"
+                },
+                "orientation": {
+                  "title": "Orientation",
+                  "type": "string",
+                  "default": "vertical",
+                  "required": true,
+                  "oneOf": [
+                    {
+                      "title": "Horizontal",
+                      "enum": ["horizontal"]
+                    },
+                    {
+                      "title": "Vertical",
+                      "enum": ["vertical"]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "hap_interaction_timeout": {
+        "title": "In-activity timeout (seconds)",
+        "description": "The amount of time since the last interaction, after which the motor should be disconnected to save power. Use 0 to never disconnect, which will use more power.",
+        "type": "integer",
+        "required": false,
+        "default": 90
+      },
+      "poll_interval": {
+        "title": "Poll interval (seconds)",
+        "description": "The mimimum amount of time between each request for an update on the position, battery status, light level etc.",
+        "type": "integer",
+        "required": false,
+        "default": 300
+      }
+    }
+  },
+  "form": null,
+  "display": null,
+  "customUi": true
+}

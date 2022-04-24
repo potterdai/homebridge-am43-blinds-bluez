@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "CommonJS",
+    "outDir": "../homebridge-ui",
+    "composite": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+  },
+  "include": [
+    "server.ts", "types.ts", "global.d.ts", "../package.json"
+  ],
+  "exclude": ["public"],
+  "references": [
+    { "path": "../lib" },
+  ]
+}
