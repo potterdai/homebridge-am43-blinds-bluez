@@ -8,7 +8,12 @@ This Homebridge plugin uses the Bluetooth on your homebridge device to search fo
 
 # Known Issues
 
+```
+DBusError: Software caused connection abort
+```
+
 - Bluez sometimes fails on startup causing homebridge to enter a restart loop. Requires rebooting the device to fix. This used to cause the devices to be dropped from HomeKit, but I've moved when they're initialised to before the BLE connection to prevent this.
+
 - `node-ble` doesn't support limiting discovered devices by a service UUID, I've created my [Own Fork](https://github.com/neil-morrison44/node-ble) to handle this - it definately limits the results, but I'm not sure if it only seems to work because the blinds are already connected. It's entirely possible that it won't connect to _anything_ for anyone else.
 - Siri can still sometimes say `"Device is not responding"` even after the device is doing what you asked. Not sure why this happens, the connection is fast & reliable.
 - Blind will report that a name change was successful but then not actually change the BLE name. ( Any user level naming should be done in the config prior to adding the blind or in HomeKit itself )
