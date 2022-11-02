@@ -24,7 +24,20 @@ class BLE {
     const { bluetooth, destroy } = createBluetooth()
     this.bluetooth = bluetooth
     this.destroy = destroy
-    this.adapter = this.bluetooth.defaultAdapter()
+    this.adapter = this.bluetooth.defaultAdapter().then(async adapter => {
+      let adapterPowered = await adapter.isPowered();
+      if (!adapterPowered) {
+         let adapterIDs = await this.bluetooth.adapters();
+         adapterIDs.forEach(async adapterID => {
+            let adapter = await this.bluetooth.getAdapter(adapterID);
+            let adapterPowered = await adapter.isPowered();
+            if (adapterPowered) {
+              return adapter;
+            }
+         });
+      }
+      return adapter;
+    });
     this.uuidToDeviceAndGatt = {}
     this.callbackToCharacteristic = new WeakMap()
   }
